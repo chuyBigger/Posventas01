@@ -60,12 +60,14 @@ def delete_cliente_view(request):
 
 def productos_view(request):
 
-    productos = Producto.objects.all(),
+    productos = Producto.objects.all()
     form_add = AddProductoForm()
-    
+
+
     context = {
         'productos': productos,
-        'form_add': form_add
+        'form_add': form_add,
+
     }
     
     return render(request, 'productos.html', context)

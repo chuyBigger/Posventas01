@@ -30,14 +30,16 @@ class EditClienteForm(forms.ModelForm):
 class AddProductoForm (forms.ModelForm):
     class Meta:
         model = Producto
-        fields = ('codigo', 'descripcion', 'imagen', 'costo', 'precio', 'cantidad')
+        fields = ('codigo', 'imagen','cantidad', 'descripcion', 'costo', 'precio' )
         labels = {
-            'codigo': 'Código Cliente: ',
-            'descripcion': 'Descripcion: ',
+
+            'codigo': 'Código Barras: ',
             'imagen': 'Imagen: ',
+            'descripcion': 'Descripcion: ',
+            'cantidad':'Cantidad en Almacen: ',
             'costo': 'Costo del Producto: $ ',
             'precio': 'Precio Publico: $ ',
-            'cantidad':'Cantidad en Almacen: '
+            
         }
 
                     
