@@ -1,7 +1,7 @@
 from pyexpat.errors import messages
 from django.shortcuts import render,redirect
 from .models import Cliente, Producto,Egreso,ProductosEgreso
-from .forms import AddClienteForm,EditClienteForm,AddProductoForm 
+from .forms import AddClienteForm,EditClienteForm,AddProductoForm, EditProductoForm
 from django.contrib import messages
 from .models import Cliente, Egreso, Producto, Egreso, ProductosEgreso
 from django.views.generic import ListView
@@ -53,7 +53,7 @@ def edit_cliente_view(request):
         cliente = Cliente.objects.get(pk=request.POST.get('id_personal_editar'))
         form = EditClienteForm(
             request.POST, request.FILES, instance= cliente)
-        if form.is_valid:
+        if form.is_valid():
             form.save()
         
     return redirect('clientes')
@@ -70,11 +70,14 @@ def productos_view(request):
 
     productos = Producto.objects.all()
     form_add = AddProductoForm()
+    form_edit = EditProductoForm()
+
 
 
     context = {
         'productos': productos,
         'form_add': form_add,
+        'form_edit': form_edit,
 
     }
     
@@ -89,6 +92,23 @@ def add_producto_view(request):
             except:
                 messages(request, 'ERROR AL GUARDAR EL PRODUCTO!!!')
                 return redirect('Productos')
+
+    return redirect('Productos')
+
+def edit_producto_view(request):
+    if request.POST:
+        producto = Producto.objects.get(pk=request.POST.get('id_producto_editar'))
+        form = EditProductoForm(
+            request.POST, request.FILES, instance= producto)
+        if form.is_valid():
+            form.save()
+        
+    return redirect('Productos')
+
+def delete_producto_view(request): 
+    if request.POST:
+        product = Producto.objects.get(pk=request.POST.get('id_producto_eliminar'))
+        product.delete()
 
     return redirect('Productos')
 
@@ -120,7 +140,6 @@ class add_ventas(ListView):
             data['error'] = str(e)
 
         return JsonResponse(data,safe=False)
-
 
 def export_pdf_view(request, id, iva):
     #print(id)

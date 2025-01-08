@@ -101,6 +101,16 @@ function editarPersonal(id, nombre, telefono, codigo) {
   document.getElementById("codigo_editar").value = codigo;
 }
 
+function editarProducto (id, codigo, cantidad, descripcion, costo, precio ) {
+  document.getElementById("id_producto_editar").value = id;
+  document.getElementById("codigo_editar").value = codigo;
+  document.getElementById("cantidad_editar").value = cantidad;
+  document.getElementById("descripcion_editar").value = descripcion;
+  document.getElementById("costo_editar").value = costo;
+  document.getElementById("precio_editar").value = precio;
+  
+}
+
 function eliminarPersonal(id) {
   document.getElementById("id_personal_eliminar").value = id;
 }
