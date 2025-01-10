@@ -11,12 +11,9 @@ urlpatterns = [
    path('productos/', views.productos_view, name='Productos'),
    path('add_producto/', views.add_producto_view, name='AddProducto'),
    path('edit_product/', views.edit_producto_view, name='EditProduct'),
-
    path('delete_producto/', views.delete_producto_view, name='DeleteProduct'),   
-   
    path('add_venta/',views.add_ventas.as_view(), name='AddVenta'),
    path('export/', views.export_pdf_view, name="ExportPDF" ),
    path('export/<id>/<iva>', views.export_pdf_view, name="ExportPDF" ),
 
-   
-]
+   ]

@@ -80,3 +80,17 @@ class ProductosEgreso(models.Model):
         item = model_to_dict(self, exclude=['created'])
         return item
 
+class Empresa(models.Model):
+    nombre = models.CharField(max_length=200, unique=True, blank= False)
+    domicilio = models.CharField(max_length=200, unique=True, blank= False)
+    telefono = models.CharField( max_length=50, blank=False)
+    rfc = models.CharField(max_length=25, blank=False)
+    created = models.DateTimeField( auto_now_add=True)
+    update = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name= 'empresa'
+        verbose_name_plural = 'empresa'
+
+    def __str__(self):
+        return self.nombre

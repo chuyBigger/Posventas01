@@ -140,6 +140,12 @@ class add_ventas(ListView):
             data['error'] = str(e)
 
         return JsonResponse(data,safe=False)
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["productos_lista"] = Producto.objects.all
+        context['clientes_lista'] = Cliente.objects.all
+        return context
 
 def export_pdf_view(request, id, iva):
     #print(id)
